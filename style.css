@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#map {
+  z-index: 1;
+}
+
+.leaflet-container {
+  border-radius: 0.5rem;
+}
+
+/* Custom file input styling */
+input[type="file"]::file-selector-button {
+  border: none;
+  background: #22c55e;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #16a34a;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recycling Helper</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body>
+    <div id="app" class="min-h-screen bg-gradient-to-b from-green-50 to-green-100">
+      <!-- Loading Spinner -->
+      <div id="loader" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+        <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-green-500"></div>
+      </div>
+
+      <!-- Error Message -->
+      <div id="error-message" class="fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg hidden"></div>
+
+      <div id="content" class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-2 text-green-800">Recycling Helper</h1>
+        <p class="text-center text-gray-600 mb-8">Help save the environment by recycling your bottles</p>
+        
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+          <div class="mb-8">
+            <label class="block text-gray-700 text-lg font-semibold mb-4 flex items-center">
+              <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              Take a Photo or Upload Image
+            </label>
+            <div class="relative">
+              <input type="file" accept="image/*" capture="environment" id="imageInput" 
+                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+              <video id="video" class="w-full hidden rounded-lg"></video>
+              <canvas id="canvas" class="w-full border rounded-lg shadow-inner bg-gray-50"></canvas>
+            </div>
+          </div>
+          
+          <div id="result" class="mb-8 p-6 bg-gray-50 rounded-xl hidden">
+            <p id="detection-result" class="text-xl font-semibold text-center"></p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-white rounded-xl overflow-hidden shadow-md">
+              <div id="map" class="h-96 rounded-lg"></div>
+            </div>
+            
+            <div id="locations" class="bg-white rounded-xl p-6">
+              <h2 class="text-2xl font-semibold mb-4 text-green-800 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                Nearby Recycling Points
+              </h2>
+              <ul id="locations-list" class="space-y-3"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
